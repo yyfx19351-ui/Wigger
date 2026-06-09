@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ON Gold Standard 100% Whey — Fuel the Standard</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=Space+Grotesk:wght@300;500;700&display=swap');
+
+  :root {
+    --gold: #D4A017;
+    --gold-light: #F0C842;
+    --black: #080808;
+    --surface: #0F0F0F;
+    --surface2: #161616;
+    --text: #F0EDE6;
+    --muted: #7A7570;
+    --red: #C0392B;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--black);
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ===== NAV ===== */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.2rem 3rem;
+    background: linear-gradient(to bottom, rgba(8,8,8,0.95), transparent);
+    backdrop-filter: blur(2px);
+  }
+  .nav-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.5rem;
+    letter-spacing: 0.15em;
+    color: var(--gold);
+  }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--muted);
+    text-decoration: none; transition: color 0.3s;
+  }
+  .nav-links a:hover { color: var(--gold-light); }
+  .nav-cta {
+    padding: 0.55rem 1.5rem;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; cursor: pointer;
+    background: transparent;
+    transition: all 0.3s;
+  }
+  .nav-cta:hover { background: var(--gold); color: var(--black); }
+
+  /* ===== HERO ===== */
+  #hero {
+    min-height: 100vh;
+    display: flex; align-items: center; justify-content: center;
+    position: relative; overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 80% 60% at 60% 50%, rgba(212,160,23,0.08) 0%, transparent 70%),
+                radial-gradient(ellipse 40% 40% at 80% 80%, rgba(192,57,43,0.05) 0%, transparent 60%),
+                var(--black);
+  }
+
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(212,160,23,0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(212,160,23,0.04) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 70% 70% at center, black 30%, transparent 80%);
+  }
+
+  .hero-content {
+    position: relative; z-index: 2;
+    display: grid; grid-template-columns: 1fr 1fr;
+    align-items: center; gap: 4rem;
+    max-width: 1200px; width: 100%; padding: 0 3rem;
+  }
+
+  .hero-text { }
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.7rem;
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold);
+    margin-bottom: 1.5rem;
+  }
+  .hero-eyebrow::before {
+    content: ''; width: 2rem; height: 1px; background: var(--gold);
+  }
+
+  .hero-h1 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(4rem, 8vw, 7.5rem);
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    margin-bottom: 1.5rem;
+  }
+  .hero-h1 .accent { color: var(--gold); }
+  .hero-h1 .line2 { display: block; color: var(--muted); }
+
+  .hero-desc {
+    font-size: 1rem; font-weight: 300; line-height: 1.7;
+    color: rgba(240,237,230,0.65);
+    max-width: 420px; margin-bottom: 2.5rem;
+  }
+
+  .hero-stats {
+    display: flex; gap: 2.5rem; margin-bottom: 2.5rem;
+  }
+  .stat { }
+  .stat-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.4rem; line-height: 1;
+    color: var(--gold-light);
+  }
+  .stat-label {
+    font-size: 0.68rem; font-weight: 500; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--muted);
+    margin-top: 0.2rem;
+  }
+
+  .hero-actions { display: flex; gap: 1rem; align-items: center; }
+  .btn-primary {
+    padding: 0.9rem 2.5rem;
+    background: var(--gold);
+    color: var(--black);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 0.8rem; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; border: none; cursor: pointer;
+    clip-path: polygon(0 0, calc(100% - 12px) 0, 100% 12px, 100% 100%, 12px 100%, 0 calc(100% - 12px));
+    transition: all 0.3s;
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-secondary {
+    padding: 0.9rem 2rem;
+    background: transparent; color: var(--text);
+    font-size: 0.78rem; font-weight: 500; letter-spacing: 0.1em;
+    text-transform: uppercase; border: 1px solid rgba(240,237,230,0.2); cursor: pointer;
+    transition: all 0.3s;
+  }
+  .btn-secondary:hover { border-color: var(--gold); color: var(--gold); }
+
+  /* Product visual */
+  .hero-visual {
+    display: flex; justify-content: center; align-items: center;
+    position: relative;
+  }
+  .product-stage {
+    position: relative; width: 420px; height: 520px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .product-glow {
+    position: absolute; width: 340px; height: 340px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(212,160,23,0.2) 0%, transparent 70%);
+    animation: pulseGlow 3s ease-in-out infinite;
+    bottom: 20px;
+  }
+  @keyframes pulseGlow {
+    0%, 100% { opacity: 0.5; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.08); }
+  }
+  .product-rings {
+    position: absolute; inset: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .ring {
+    position: absolute; border-radius: 50%;
+    border: 1px solid rgba(212,160,23,0.12);
+    animation: spinRing linear infinite;
+  }
+  .ring:nth-child(1) { width: 420px; height: 420px; animation-duration: 18s; }
+  .ring:nth-child(2) { width: 320px; height: 320px; animation-duration: 12s; animation-direction: reverse; border-color: rgba(212,160,23,0.08); }
+  .ring:nth-child(3) { width: 230px; height: 230px; animation-duration: 8s; border-color: rgba(212,160,23,0.15); }
+  @keyframes spinRing {
+    from { transform: rotateX(70deg) rotate(0deg); }
+    to { transform: rotateX(70deg) rotate(360deg); }
+  }
+  .product-img {
+    position: relative; z-index: 2;
+    width: 260px;
+    filter: drop-shadow(0 20px 60px rgba(212,160,23,0.3)) drop-shadow(0 0 120px rgba(212,160,23,0.15));
+    animation: floatProduct 4s ease-in-out infinite;
+    transform-style: preserve-3d;
+  }
+  @keyframes floatProduct {
+    0%, 100% { transform: translateY(0) rotateY(-5deg); }
+    50% { transform: translateY(-18px) rotateY(5deg); }
+  }
+
+  .particle {
+    position: absolute; width: 4px; height: 4px;
+    border-radius: 50%; background: var(--gold-light);
+    animation: floatParticle linear infinite;
+    opacity: 0;
+  }
+  @keyframes floatParticle {
+    0% { opacity: 0; transform: translateY(0) scale(0); }
+    20% { opacity: 0.8; }
+    100% { opacity: 0; transform: translateY(-140px) scale(1.5); }
+  }
+
+  /* ===== SCROLL INDICATOR ===== */
+  .scroll-hint {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    color: var(--muted); font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
+    animation: bobScroll 2s ease-in-out infinite;
+  }
+  .scroll-hint::after {
+    content: ''; width: 1px; height: 3rem;
+    background: linear-gradient(to bottom, var(--gold), transparent);
+  }
+  @keyframes bobScroll {
+    0%, 100% { opacity: 0.5; transform: translateX(-50%) translateY(0); }
+    50% { opacity: 1; transform: translateX(-50%) translateY(8px); }
+  }
+
+  /* ===== MARQUEE ===== */
+  .marquee-section {
+    padding: 1.5rem 0;
+    background: var(--gold);
+    overflow: hidden;
+    position: relative;
+  }
+  .marquee-track {
+    display: flex; gap: 0; white-space: nowrap;
+    animation: marqueeSroll 20s linear infinite;
+  }
+  .marquee-item {
+    flex-shrink: 0;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.1rem; letter-spacing: 0.15em;
+    color: var(--black); padding: 0 2.5rem;
+    display: flex; align-items: center; gap: 1.5rem;
+  }
+  .marquee-item::after {
+    content: '◆'; font-size: 0.5rem; opacity: 0.6;
+  }
+  @keyframes marqueeSroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  /* ===== FEATURES ===== */
+  #features {
+    padding: 8rem 3rem;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .section-label {
+    font-size: 0.72rem; font-weight: 600; letter-spacing: 0.2em;
+    text-transform: uppercase; color: var(--gold);
+    display: flex; align-items: center; gap: 0.8rem;
+    margin-bottom: 1rem;
+  }
+  .section-label::before { content: ''; width: 2rem; height: 1px; background: var(--gold); }
+  .section-h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    letter-spacing: 0.03em;
+    line-height: 0.95;
+    margin-bottom: 5rem;
+  }
+  .section-h2 .dim { color: var(--muted); }
+
+  .features-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px;
+    background: rgba(212,160,23,0.1);
+  }
+  .feature-card {
+    background: var(--surface); padding: 3rem 2.5rem;
+    transition: background 0.4s;
+    position: relative; overflow: hidden;
+  }
+  .feature-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0;
+    height: 2px; background: linear-gradient(90deg, var(--gold), transparent);
+    transform: scaleX(0); transform-origin: left; transition: transform 0.4s;
+  }
+  .feature-card:hover::before { transform: scaleX(1); }
+  .feature-card:hover { background: var(--surface2); }
+  .feature-icon {
+    width: 48px; height: 48px; margin-bottom: 1.5rem;
+    color: var(--gold);
+  }
+  .feature-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 4rem; line-height: 1;
+    color: var(--gold-light); margin-bottom: 0.5rem;
+  }
+  .feature-unit { font-size: 1.2rem; color: var(--muted); }
+  .feature-title {
+    font-size: 0.85rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; margin-bottom: 0.8rem; color: var(--text);
+  }
+  .feature-desc {
+    font-size: 0.88rem; font-weight: 300; line-height: 1.65; color: var(--muted);
+  }
+
+  /* ===== 3D SCROLL SECTION ===== */
+  #showcase {
+    padding: 8rem 0;
+    background: linear-gradient(180deg, var(--black) 0%, var(--surface) 50%, var(--black) 100%);
+    position: relative; overflow: hidden;
+  }
+  .showcase-inner {
+    max-width: 1200px; margin: 0 auto; padding: 0 3rem;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem; align-items: center;
+  }
+  .showcase-visual {
+    position: relative; height: 500px; perspective: 1000px;
+  }
+  .can-rotate {
+    width: 100%; height: 100%;
+    display: flex; align-items: center; justify-content: center;
+    transform-style: preserve-3d;
+  }
+  .can-rotate img {
+    width: 280px;
+    filter: drop-shadow(0 30px 80px rgba(212,160,23,0.4));
+    transition: transform 0.1s ease-out;
+  }
+  .showcase-text { }
+  .showcase-points { margin-top: 3rem; display: flex; flex-direction: column; gap: 1.5rem; }
+  .point {
+    display: flex; align-items: flex-start; gap: 1.2rem;
+    padding: 1.5rem;
+    border: 1px solid rgba(212,160,23,0.08);
+    transition: border-color 0.3s, background 0.3s;
+    opacity: 0; transform: translateX(30px);
+    transition: all 0.5s ease;
+  }
+  .point.visible { opacity: 1; transform: translateX(0); }
+  .point:hover { border-color: rgba(212,160,23,0.3); background: rgba(212,160,23,0.03); }
+  .point-dot {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--gold); flex-shrink: 0; margin-top: 0.4rem;
+  }
+  .point-title { font-size: 0.9rem; font-weight: 600; margin-bottom: 0.3rem; }
+  .point-text { font-size: 0.85rem; font-weight: 300; color: var(--muted); line-height: 1.6; }
+
+  /* ===== FLAVORS / VARIANTS ===== */
+  #flavors {
+    padding: 8rem 3rem;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .flavor-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr); gap: 1rem; margin-top: 4rem;
+  }
+  .flavor-card {
+    padding: 2rem 1.5rem; text-align: center;
+    background: var(--surface);
+    border: 1px solid transparent;
+    cursor: pointer; transition: all 0.3s;
+    clip-path: polygon(0 0, calc(100% - 16px) 0, 100% 16px, 100% 100%, 0 100%);
+    opacity: 0; transform: translateY(20px);
+  }
+  .flavor-card.visible { opacity: 1; transform: translateY(0); }
+  .flavor-card:hover { border-color: var(--gold); background: var(--surface2); transform: translateY(-4px); }
+  .flavor-swatch {
+    width: 56px; height: 56px; border-radius: 50%; margin: 0 auto 1rem;
+    position: relative; overflow: hidden;
+  }
+  .flavor-swatch::after {
+    content: ''; position: absolute; inset: 4px; border-radius: 50%;
+    background: rgba(0,0,0,0.3);
+  }
+  .flavor-name { font-size: 0.88rem; font-weight: 600; margin-bottom: 0.3rem; }
+  .flavor-note { font-size: 0.75rem; color: var(--muted); font-weight: 300; }
+
+  /* ===== NUMBERS BAR ===== */
+  #numbers {
+    padding: 6rem 3rem;
+    background: var(--surface);
+    position: relative; overflow: hidden;
+  }
+  #numbers::before {
+    content: '';
+    position: absolute; top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  #numbers::after {
+    content: '';
+    position: absolute; bottom: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .numbers-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    text-align: center; gap: 2rem;
+  }
+  .num-block { }
+  .num-big {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 5vw, 5rem);
+    color: var(--gold-light); line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+  .num-label {
+    font-size: 0.75rem; font-weight: 500; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--muted);
+  }
+
+  /* ===== CTA SECTION ===== */
+  #cta {
+    padding: 10rem 3rem;
+    text-align: center; position: relative; overflow: hidden;
+  }
+  .cta-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 80% at center, rgba(212,160,23,0.07) 0%, transparent 70%);
+  }
+  .cta-h2 {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 6vw, 6rem);
+    line-height: 0.95; margin-bottom: 1.5rem;
+    position: relative; z-index: 1;
+  }
+  .cta-h2 .gold { color: var(--gold); }
+  .cta-sub {
+    font-size: 1rem; font-weight: 300; color: var(--muted);
+    max-width: 500px; margin: 0 auto 3rem;
+    position: relative; z-index: 1; line-height: 1.7;
+  }
+  .cta-actions {
+    position: relative; z-index: 1;
+    display: flex; justify-content: center; gap: 1.5rem; align-items: center;
+  }
+  .price-badge {
+    position: relative; z-index: 1;
+    margin-top: 3rem;
+    font-size: 0.8rem; color: var(--muted); letter-spacing: 0.05em;
+  }
+  .price-badge span { color: var(--gold-light); font-weight: 600; font-size: 1.1rem; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    padding: 3rem;
+    border-top: 1px solid rgba(212,160,23,0.1);
+    display: flex; justify-content: space-between; align-items: center;
+  }
+  .footer-logo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.2rem; letter-spacing: 0.15em; color: var(--gold);
+  }
+  .footer-copy { font-size: 0.75rem; color: var(--muted); }
+  .footer-links { display: flex; gap: 2rem; }
+  .footer-links a { font-size: 0.75rem; color: var(--muted); text-decoration: none; transition: color 0.3s; }
+  .footer-links a:hover { color: var(--gold); }
+
+  /* ===== SCROLL ANIMATIONS ===== */
+  .reveal {
+    opacity: 0; transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .reveal-left {
+    opacity: 0; transform: translateX(-40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal-left.visible { opacity: 1; transform: translateX(0); }
+  .reveal-right {
+    opacity: 0; transform: translateX(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  .reveal-right.visible { opacity: 1; transform: translateX(0); }
+
+  /* ===== MOBILE ===== */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    .hero-content { grid-template-columns: 1fr; text-align: center; padding: 0 1.5rem; gap: 2rem; }
+    .hero-text { order: 2; }
+    .hero-visual { order: 1; }
+    .hero-stats { justify-content: center; }
+    .hero-actions { justify-content: center; flex-wrap: wrap; }
+    .product-stage { width: 280px; height: 360px; }
+    .product-img { width: 200px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .showcase-inner { grid-template-columns: 1fr; gap: 2rem; }
+    .showcase-visual { height: 300px; }
+    .flavor-grid { grid-template-columns: repeat(2, 1fr); }
+    .numbers-grid { grid-template-columns: repeat(2, 1fr); }
+    #features, #flavors { padding: 5rem 1.5rem; }
+    #showcase { padding: 5rem 0; }
+    .showcase-inner { padding: 0 1.5rem; }
+    footer { flex-direction: column; gap: 1.5rem; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Optimum Nutrition</div>
+  <ul class="nav-links">
+    <li><a href="#features">Nutrition</a></li>
+    <li><a href="#showcase">Science</a></li>
+    <li><a href="#flavors">Flavors</a></li>
+    <li><a href="#numbers">Results</a></li>
+  </ul>
+  <button class="nav-cta">Buy Now</button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-content">
+    <div class="hero-text">
+      <div class="hero-eyebrow">Gold Standard — Since 1987</div>
+      <h1 class="hero-h1">
+        <span class="accent">Fuel</span><br>
+        <span>The</span><br>
+        <span class="line2">Standard.</span>
+      </h1>
+      <p class="hero-desc">
+        24g of ultra-premium whey protein per serving. Cold-filtered. Instantized. 
+        Trusted by champions in 90+ countries. This is where gains begin.
+      </p>
+      <div class="hero-stats">
+        <div class="stat">
+          <div class="stat-num">24G</div>
+          <div class="stat-label">Protein / Serving</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">74</div>
+          <div class="stat-label">Servings</div>
+        </div>
+        <div class="stat">
+          <div class="stat-num">5.5G</div>
+          <div class="stat-label">BCAAs</div>
+        </div>
+      </div>
+      <div class="hero-actions">
+        <button class="btn-primary">Buy Now — $54.99</button>
+        <button class="btn-secondary">Learn More ↓</button>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="product-stage">
+        <div class="product-glow"></div>
+        <div class="product-rings">
+          <div class="ring"></div>
+          <div class="ring"></div>
+          <div class="ring"></div>
+        </div>
+        <img class="product-img" src="/mnt/user-data/uploads/1780985450054_image.png" alt="ON Gold Standard 100% Whey Protein">
+        <!-- Particles -->
+        <div class="particle" style="left:40%;bottom:15%;animation-delay:0s;animation-duration:3.5s;"></div>
+        <div class="particle" style="left:55%;bottom:10%;animation-delay:0.7s;animation-duration:2.8s;width:3px;height:3px;"></div>
+        <div class="particle" style="left:65%;bottom:20%;animation-delay:1.4s;animation-duration:4s;width:5px;height:5px;"></div>
+        <div class="particle" style="left:30%;bottom:12%;animation-delay:2s;animation-duration:3.2s;width:3px;height:3px;"></div>
+        <div class="particle" style="left:72%;bottom:18%;animation-delay:0.3s;animation-duration:3.8s;width:4px;height:4px;"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="scroll-hint">Scroll</div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-section">
+  <div class="marquee-track" id="marquee">
+    <div class="marquee-item">24G Protein</div>
+    <div class="marquee-item">5.5G BCAAs</div>
+    <div class="marquee-item">4G Glutamine</div>
+    <div class="marquee-item">130 Calories</div>
+    <div class="marquee-item">Gluten Free</div>
+    <div class="marquee-item">Cold Filtered</div>
+    <div class="marquee-item">74 Servings</div>
+    <div class="marquee-item">Award Winning</div>
+    <div class="marquee-item">24G Protein</div>
+    <div class="marquee-item">5.5G BCAAs</div>
+    <div class="marquee-item">4G Glutamine</div>
+    <div class="marquee-item">130 Calories</div>
+    <div class="marquee-item">Gluten Free</div>
+    <div class="marquee-item">Cold Filtered</div>
+    <div class="marquee-item">74 Servings</div>
+    <div class="marquee-item">Award Winning</div>
+  </div>
+</div>
+
+<!-- FEATURES -->
+<section id="features">
+  <div class="section-label reveal">Nutrition Profile</div>
+  <h2 class="section-h2 reveal">Engineered <span class="dim">for</span><br>Performance.</h2>
+
+  <div class="features-grid">
+    <div class="feature-card reveal">
+      <div class="feature-num">24<span class="feature-unit">g</span></div>
+      <div class="feature-title">Protein Per Serving</div>
+      <div class="feature-desc">A blend of whey protein isolates, concentrates, and peptides. 
+        Pure, fast-absorbing fuel for muscle recovery and growth.</div>
+    </div>
+    <div class="feature-card reveal" style="transition-delay:0.1s">
+      <div class="feature-num">5.5<span class="feature-unit">g</span></div>
+      <div class="feature-title">Naturally Occurring BCAAs</div>
+      <div class="feature-desc">Leucine, Isoleucine, and Valine in optimal ratios to trigger 
+        muscle protein synthesis and reduce exercise-induced breakdown.</div>
+    </div>
+    <div class="feature-card reveal" style="transition-delay:0.2s">
+      <div class="feature-num">4<span class="feature-unit">g</span></div>
+      <div class="feature-title">Glutamine & Precursors</div>
+      <div class="feature-desc">The most abundant amino acid in muscle tissue. Supports 
+        immune function and accelerates recovery between intense sessions.</div>
+    </div>
+    <div class="feature-card reveal" style="transition-delay:0.3s">
+      <div class="feature-num">130<span class="feature-unit">cal</span></div>
+      <div class="feature-title">Per Serving</div>
+      <div class="feature-desc">Lean nutrition that fits any diet. Whether you're bulking, 
+        cutting, or maintaining — Gold Standard fits your macros.</div>
+    </div>
+    <div class="feature-card reveal" style="transition-delay:0.4s">
+      <div class="feature-num">74<span class="feature-unit">srv</span></div>
+      <div class="feature-title">Servings Per Container</div>
+      <div class="feature-desc">More gains per dollar. A full 5lb tub that powers two and a half 
+        months of consistent training at one shake per day.</div>
+    </div>
+    <div class="feature-card reveal" style="transition-delay:0.5s">
+      <div class="feature-num">#1<span class="feature-unit"> </span></div>
+      <div class="feature-title">Selling Protein Brand</div>
+      <div class="feature-desc">Over 30 years setting the standard. The world's most trusted 
+        whey protein — sold in more than 90 countries worldwide.</div>
+    </div>
+  </div>
+</section>
+
+<!-- SHOWCASE -->
+<section id="showcase">
+  <div class="showcase-inner">
+    <div class="showcase-visual">
+      <div class="can-rotate" id="canRotate">
+        <img src="/mnt/user-data/uploads/1780985450054_image.png" alt="Whey Protein 3D view" id="rotateImg">
+      </div>
+    </div>
+    <div class="showcase-text">
+      <div class="section-label reveal-right">The Science</div>
+      <h2 class="section-h2 reveal-right">Built From<br><span class="dim">The Inside</span><br>Out.</h2>
+      <div class="showcase-points">
+        <div class="point">
+          <div class="point-dot"></div>
+          <div>
+            <div class="point-title">Whey Protein Isolates — Primary Source</div>
+            <div class="point-text">WPI is filtered to remove fat and lactose, delivering the highest protein 
+              percentage possible with faster absorption kinetics.</div>
+          </div>
+        </div>
+        <div class="point">
+          <div class="point-dot"></div>
+          <div>
+            <div class="point-title">Instantized for Perfect Mixability</div>
+            <div class="point-text">Proprietary lecithin process ensures zero clumping. Mixes completely 
+              with a spoon — no blender required. Smooth every time.</div>
+          </div>
+        </div>
+        <div class="point">
+          <div class="point-dot"></div>
+          <div>
+            <div class="point-title">Third-Party Tested & Informed Sport Certified</div>
+            <div class="point-text">Every batch tested for banned substances. Professional athletes and 
+              everyday athletes train with full confidence.</div>
+          </div>
+        </div>
+        <div class="point">
+          <div class="point-dot"></div>
+          <div>
+            <div class="point-title">No Amino Spiking. No Fillers.</div>
+            <div class="point-text">What's on the label is in the tub. Verified amino acid profiles 
+              with every production run — transparency you can taste.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FLAVORS -->
+<section id="flavors">
+  <div class="section-label reveal">Flavor Range</div>
+  <h2 class="section-h2 reveal">Every Craving.<br><span class="dim">Covered.</span></h2>
+
+  <div class="flavor-grid">
+    <div class="flavor-card reveal">
+      <div class="flavor-swatch" style="background: linear-gradient(135deg, #3a1a0a, #7a3a1a);"></div>
+      <div class="flavor-name">Double Rich Chocolate</div>
+      <div class="flavor-note">Rich · Indulgent · Classic</div>
+    </div>
+    <div class="flavor-card reveal" style="transition-delay:0.1s">
+      <div class="flavor-swatch" style="background: linear-gradient(135deg, #f5e6c8, #e8c97a);"></div>
+      <div class="flavor-name">Vanilla Ice Cream</div>
+      <div class="flavor-note">Smooth · Sweet · Creamy</div>
+    </div>
+    <div class="flavor-card reveal" style="transition-delay:0.2s">
+      <div class="flavor-swatch" style="background: linear-gradient(135deg, #f8d7da, #e91e8c);"></div>
+      <div class="flavor-name">Strawberry Banana</div>
+      <div class="flavor-note">Fruity · Fresh · Light</div>
+    </div>
+    <div class="flavor-card reveal" style="transition-delay:0.3s">
+      <div class="flavor-swatch" style="background: linear-gradient(135deg, #c8e6c9, #2e7d32);"></div>
+      <div class="flavor-name">Mocha Cappuccino</div>
+      <div class="flavor-note">Bold · Roasted · Energizing</div>
+    </div>
+    <div class="flavor-card reveal" style="transition-delay:0.4s">
+      <div class="flavor-swatch" style="background: linear-gradient(135deg, #fff3e0, #ff9800);"></div>
+      <div class="flavor-name">Cookies & Cream</div>
+      <div class="flavor-note">Dessert · Dense · Satisfying</div>
+    </div>
+    <div class="flavor-card reveal" style="transition-delay:0.5s">
+      <div class="flavor-swatch" style="background: linear-gradient(135deg, #fce4ec, #ad1457);"></div>
+      <div class="flavor-name">Rocky Road</div>
+      <div class="flavor-note">Complex · Rich · Textured</div>
+    </div>
+    <div class="flavor-card reveal" style="transition-delay:0.6s">
+      <div class="flavor-swatch" style="background: linear-gradient(135deg, #e3f2fd, #1976d2);"></div>
+      <div class="flavor-name">Unflavored</div>
+      <div class="flavor-note">Pure · Versatile · Clean</div>
+    </div>
+    <div class="flavor-card reveal" style="transition-delay:0.7s">
+      <div class="flavor-swatch" style="background: linear-gradient(135deg, #f9fbe7, #8bc34a);"></div>
+      <div class="flavor-name">Banana Cream</div>
+      <div class="flavor-note">Tropical · Subtle · Smooth</div>
+    </div>
+  </div>
+</section>
+
+<!-- NUMBERS -->
+<section id="numbers">
+  <div class="numbers-grid">
+    <div class="num-block reveal">
+      <div class="num-big" data-target="30">0</div>
+      <div class="num-label">Years of Excellence</div>
+    </div>
+    <div class="num-block reveal" style="transition-delay:0.1s">
+      <div class="num-big" data-target="90">0</div>
+      <div class="num-label">Countries Sold In</div>
+    </div>
+    <div class="num-block reveal" style="transition-delay:0.2s">
+      <div class="num-big" data-target="20">0</div>
+      <div class="num-label">+ Flavors Available</div>
+    </div>
+    <div class="num-block reveal" style="transition-delay:0.3s">
+      <div class="num-big" data-target="1">0</div>
+      <div class="num-label">World Ranking</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="cta">
+  <div class="cta-bg"></div>
+  <div class="cta-h2 reveal">
+    Ready to<br><span class="gold">Raise</span><br>Your Standard?
+  </div>
+  <p class="cta-sub reveal">
+    Join millions of athletes worldwide who trust Gold Standard 
+    Whey to fuel their best performance. Every. Single. Day.
+  </p>
+  <div class="cta-actions reveal">
+    <button class="btn-primary">Add to Cart — $54.99</button>
+    <button class="btn-secondary">Find a Store</button>
+  </div>
+  <div class="price-badge reveal">
+    5 lb / 74 Servings — <span>$0.74 per serving</span> — Free Shipping over $75
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Optimum Nutrition</div>
+  <div class="footer-copy">© 2026 Optimum Nutrition. All rights reserved.</div>
+  <div class="footer-links">
+    <a href="#">Privacy</a>
+    <a href="#">Terms</a>
+    <a href="#">Contact</a>
+    <a href="#">Instagram</a>
+  </div>
+</footer>
+
+<script>
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .point, .flavor-card').forEach(el => {
+  observer.observe(el);
+});
+
+// Counter animation
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const el = entry.target;
+      const target = parseInt(el.dataset.target);
+      let current = 0;
+      const duration = 1800;
+      const step = target / (duration / 16);
+      const timer = setInterval(() => {
+        current += step;
+        if (current >= target) {
+          el.textContent = target + '+';
+          clearInterval(timer);
+        } else {
+          el.textContent = Math.floor(current);
+        }
+      }, 16);
+      counterObserver.unobserve(el);
+    }
+  });
+}, { threshold: 0.5 });
+
+document.querySelectorAll('[data-target]').forEach(el => {
+  counterObserver.observe(el);
+});
+
+// Mouse-driven 3D rotate on product
+const canRotate = document.getElementById('canRotate');
+const rotateImg = document.getElementById('rotateImg');
+if (canRotate && rotateImg) {
+  const section = document.getElementById('showcase');
+  window.addEventListener('scroll', () => {
+    const rect = section.getBoundingClientRect();
+    const progress = 1 - (rect.top + rect.height) / (window.innerHeight + rect.height);
+    const rotation = (progress - 0.5) * 60;
+    rotateImg.style.transform = `rotateY(${rotation}deg) scale(1.05)`;
+  });
+}
+
+// Parallax hero image
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  const heroImg = document.querySelector('.product-img');
+  if (heroImg && scrollY < window.innerHeight) {
+    heroImg.style.transform = `translateY(${scrollY * 0.15}px) rotateY(${-5 + scrollY * 0.01}deg)`;
+  }
+});
+</script>
+</body>
+</html>
